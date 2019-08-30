@@ -27,7 +27,12 @@ app.get('/',function(req,res){
 });
 
 app.post('/newCustomer', function(req,res){
-    col.insertOne(req.body);
+    let age = parseInt(req.body.age);
+    rec = {
+        name: req.body.name,
+        age: age
+    }
+    col.insertOne(rec);
     res.sendFile(viewsPath+"index.html");
 });
 
@@ -39,5 +44,11 @@ app.get('/getAll',function(req,res){
     });
 
 });
+// get age equal to 25
+query = {age:{$eq:25}}
+
+let query = {};
+
+col.updateOne()
 
 app.listen(8888);
